@@ -27,16 +27,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = authenticate($login, $password);
 
             if ($user) {
-
+                // Успешная авторизация
                 $_SESSION['user'] = $user;
-                header('Location: ../admin/index.php');
+
+
+                if ($user['role'] === 'admin') {
+                    header('Location: ../admin/index.php');
+                } else {
+                    header('Location: ../index_user.php');
+                }
                 exit();
             } else {
-
+                // Неудачная авторизация
                 $error = "Вы ввели неверный логин или пароль. Пожалуйста проверьте ещё раз введенные данные";
             }
+            }
         }
-    }
+
 }
 ?>
 <!DOCTYPE html>
