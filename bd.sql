@@ -175,6 +175,8 @@ CREATE TABLE users (
                        last_login_attempt DATETIME NULL,
                        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO users (login, password, role, is_blocked, block_count)
+VALUES ('admin', '123', 'admin', FALSE, 0);
 -- Запрос Модуль 3
 -- Расчет себестоимости
 SELECT
