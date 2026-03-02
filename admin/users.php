@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once '../config/database.php';
 require_once '../includes/auth.php';
@@ -15,7 +16,7 @@ if ($_SESSION['user']['role'] !== 'admin') {
     exit();
 }
 
-// добавлениe пользователя
+// Обработка добавления пользователя
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_user'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
@@ -44,7 +45,7 @@ $users = getAllUsers();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Управление пользователями </title>
-
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 <div class="admin-container">
