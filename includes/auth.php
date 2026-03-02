@@ -93,11 +93,16 @@ function getAllUsers() {
     return $users;
 }
 
+function blockUser($id) {
+    global $conn;
+    $id = (int)$id;
+    $query = "UPDATE users SET is_blocked = 1, block_count = 3 WHERE id = $id";
+    mysqli_query($conn, $query);
+}
 
 function unblockUser($id) {
     global $conn;
-
+    $id = (int)$id;
     $query = "UPDATE users SET is_blocked = 0, block_count = 0 WHERE id = $id";
     mysqli_query($conn, $query);
 }
-?>
