@@ -1,11 +1,14 @@
 <?php
-// Функции аутентификации
+
+
 require_once '../config/database.php';
 
-// Проверка авторизации
+
 function authenticate($login, $password) {
     global $conn;
-        $query = "SELECT * FROM users WHERE login = '$login' AND password = '$password'";
+
+
+    $query = "SELECT * FROM users WHERE login = '$login' AND password = '$password'";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
@@ -36,7 +39,7 @@ function authenticate($login, $password) {
     }
 }
 
-// Проверка, заблокирован ли пользователь
+
 function isUserBlocked($login) {
     global $conn;
 
@@ -47,7 +50,7 @@ function isUserBlocked($login) {
     return $row['is_blocked'] == 1;
 }
 
-// Проверка существования пользователя
+
 function userExists($login) {
     global $conn;
 
@@ -58,7 +61,7 @@ function userExists($login) {
     return $row['count'] > 0;
 }
 
-// Добавление пользователя
+
 function addUser($login, $password, $role) {
     global $conn;
 
@@ -66,7 +69,7 @@ function addUser($login, $password, $role) {
     mysqli_query($conn, $query);
 }
 
-// Обновление пользователя
+
 function updateUser($id, $login, $password, $role, $is_blocked, $block_count) {
     global $conn;
 
@@ -74,7 +77,8 @@ function updateUser($id, $login, $password, $role, $is_blocked, $block_count) {
     mysqli_query($conn, $query);
 }
 
-// Получение всех пользователей
+
+
 function getAllUsers() {
     global $conn;
 
@@ -89,7 +93,7 @@ function getAllUsers() {
     return $users;
 }
 
-// Снятие блокировки
+
 function unblockUser($id) {
     global $conn;
 
