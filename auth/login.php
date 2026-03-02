@@ -1,12 +1,5 @@
 <?php
-/**
- * Форма авторизации
- *
- * Страница для авторизации пользователей в системе
- *
- * @author Student
- * @version 1.0
- */
+
 
 session_start();
 require_once '../config/database.php';
