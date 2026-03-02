@@ -1,15 +1,17 @@
 <?php
+
+
 session_start();
 require_once '../config/database.php';
 require_once '../includes/auth.php';
 
-
+// Проверка авторизации
 if (!isset($_SESSION['user'])) {
     header('Location: ../auth/login.php');
     exit();
 }
 
-
+// Проверка роли
 if ($_SESSION['user']['role'] !== 'admin') {
     header('Location: ../index.php');
     exit();
@@ -21,7 +23,7 @@ if ($_SESSION['user']['role'] !== 'admin') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Админ-панель </title>
-
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 <div class="admin-container">
