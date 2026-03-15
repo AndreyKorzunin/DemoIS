@@ -164,8 +164,20 @@ CREATE TABLE production_materials (
                                       INDEX idx_prodmat_batch (batch_id),
                                       INDEX idx_prodmat_material (material_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- 10.Запрос Модуль 3
+-- users
+CREATE TABLE users (
+                       id INT AUTO_INCREMENT PRIMARY KEY,
+                       login VARCHAR(50) NOT NULL UNIQUE,
+                       password VARCHAR(255) NOT NULL,
+                       role ENUM('admin', 'user') NOT NULL DEFAULT 'user',
+                       is_blocked BOOLEAN NOT NULL DEFAULT FALSE,
+                       block_count INT NOT NULL DEFAULT 0,
+                       last_login_attempt DATETIME NULL,
+                       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO users (login, password, role, is_blocked, block_count)
+VALUES ('admin', '123', 'admin', FALSE, 0);
+-- Запрос Модуль 3
 -- Расчет себестоимости
 SELECT
     o.order_number AS 'Номер заказа',
